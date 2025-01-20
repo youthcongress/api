@@ -25,7 +25,7 @@ jobs:
 
           script: |
             cd /home/cb/danfelabs/youthcongressnepal || exit 1            
-            docker build -t youthcongressnepal/beta:v1.0 .
-            docker stop youthcongressnepal/beta:v1.0 || true
-            docker rm youthcongressnepal/beta:v1.0 || true
-            docker run -d --name youthcongressnepal/beta:v1.0 -p 8004:8004 youthcongressnepal/beta:v1.0
+            docker build -t youthcongressnepal_beta .
+            docker stop youthcongressnepal_beta || true
+            docker rm youthcongressnepal_beta || true
+            docker run -d --name youthcongressnepal:beta -p 8004:8004 youthcongressnepal_beta
