@@ -28,4 +28,4 @@ jobs:
             docker build -t youthcongressnepal_beta .
             docker stop youthcongressnepal_beta || true
             docker rm youthcongressnepal_beta || true
-            docker run -d --name youthcongressnepal:beta -p 8004:8004 youthcongressnepal_beta
+            docker run -d --name youthcongressnepal_beta -p 8004:8004 youthcongressnepal_beta
