@@ -1,0 +1,31 @@
+name: Deploy on VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Connect to VPS and deploy
+      - name: SSH into VPS and deploy
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+
+          script: |
+            cd /home/cb/danfelabs/youthcongressnepal || exit 1            
+            docker build -t youthcongressnepal/beta:v1.0 .
+            docker stop youthcongressnepal/beta:v1.0 || true
+            docker rm youthcongressnepal/beta:v1.0 || true
+            docker run -d --name youthcongressnepal/beta:v1.0 -p 8004:8004 youthcongressnepal/beta:v1.0
