@@ -1,5 +1,5 @@
 {
-	"name": "youthcongressnepal",	
+	"name": "youthcongressnepal-api",	
 	"image": "mcr.microsoft.com/devcontainers/base:alpine-3.20",
 	"remoteUser": "root",
 
@@ -8,7 +8,8 @@
 		"vscode": {
 			"extensions": [
 				"golang.go",
-				"github.vscode-github-actions"
+				"github.vscode-github-actions",
+				"ms-azuretools.vscode-docker"
 			]
 		}
 	}
