@@ -25,7 +25,7 @@ jobs:
 
           script: |
             cd /home/cb/danfelabs/youthcongressnepal || exit 1            
-            docker build -t youthcongressnepal_api .
-            docker stop youthcongressnepal_api || true
-            docker rm youthcongressnepal_api || true
-            docker run -d --name api.youthcongressnepal.com -p 8004:8004 youthcongressnepal_api
+            docker build -t youthcongressnepal.api .
+            docker stop youthcongressnepal.api || true
+            docker rm youthcongressnepal.api || true
+            docker run -d --name api.youthcongressnepal.com -p 8004:8004 youthcongressnepal.api
