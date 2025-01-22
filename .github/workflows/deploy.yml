@@ -24,8 +24,8 @@ jobs:
           port: 22
 
           script: |
-            cd /home/cb/danfelabs/youthcongressnepal || exit 1            
-            docker build -t youthcongressnepal.api .
-            docker stop youthcongressnepal.api || true
-            docker rm youthcongressnepal.api || true
-            docker run -d --name api.youthcongressnepal.com -p 8004:8004 youthcongressnepal.api
+            cd /home/cb/projects/youthcongress/api || exit 1            
+            docker build -t youthcongressapi .
+            docker stop youthcongressapi || true
+            docker rm youthcongressapi || true
+            docker run -d --name api.youthcongress.org.np -p 8004:8004 youthcongressapi

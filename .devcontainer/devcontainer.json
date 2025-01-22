@@ -1,9 +1,9 @@
 {
-	"name": "youthcongressnepal-api",	
+	"name": "youthcongress-api",	
 	"image": "mcr.microsoft.com/devcontainers/base:alpine-3.20",
 	"remoteUser": "root",
 
-	"postCreateCommand": "/bin/sh /workspaces/youthcongressnepal/.devcontainer/setup.sh",
+	"postCreateCommand": "/bin/sh /workspaces/api/.devcontainer/setup.sh",
 	"customizations": {
 		"vscode": {
 			"extensions": [
