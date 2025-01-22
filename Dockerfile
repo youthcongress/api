@@ -9,7 +9,7 @@ COPY .devcontainer/setup.sh /setup.sh
 RUN chmod +x /setup.sh && /setup.sh
 
 # Copy Go modules files separately for better caching
-COPY go.mod go.sum ./
+COPY go.mod ./
 RUN go mod download
 
 # Copy the entire project into the container
