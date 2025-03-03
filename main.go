@@ -5,6 +5,5 @@ import (
 )
 
 func main() {
-	port := "8004"
-	server.StartServer(port)
+	
 }
