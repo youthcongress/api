@@ -28,4 +28,4 @@ jobs:
             docker build -t youthcongressapi .
             docker stop youthcongressapi || true
             docker rm youthcongressapi || true
-            docker run -d --name api.youthcongress.org.np -p 8004:8004 youthcongressapi
+            docker run -d --name api.youthcongressnepal.org -p 8010:8010 youthcongressapi

@@ -3,4 +3,4 @@ echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositor
 
 apk update && apk upgrade -y
 
-apk add go=1.23.5-r0
+apk add go=1.24.0-r0

@@ -1,6 +1,5 @@
 {
     "material-icon-theme.folders.associations": {
-        "foundation": "Core",
-        "storage": "Images"
+        "storage": "Images",        
     }
 }
