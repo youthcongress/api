@@ -19,7 +19,7 @@ RUN go mod download
 COPY . .
 
 # Ensure the public directory exists
-RUN mkdir -p /app/public
+RUN mkdir -p /app/public && touch /app/public/.keep
 
 # Build the Go application
 RUN go build -o main main.go  # Ensure main.go exists
@@ -32,7 +32,7 @@ WORKDIR /app
 
 # Copy the built binary and necessary files
 COPY --from=builder /app/main .
-COPY --from=builder /app/public ./public || true
+COPY --from=builder /app/public ./public
 
 # Ensure necessary runtime dependencies are installed
 RUN apk add --no-cache ca-certificates
