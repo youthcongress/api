@@ -12,7 +12,7 @@ RUN chmod +x /setup.sh && /setup.sh
 COPY go.mod go.sum ./
 RUN go mod download
 
-# Copy the rest of the application files
+# Copy the entire app
 COPY . .
 
 # Build the Go application
@@ -28,11 +28,14 @@ WORKDIR /app
 COPY --from=builder /app/main .
 COPY --from=builder /app/public ./public
 
-# Ensure necessary runtime dependencies are installed
+# Ensure required dependencies are installed
 RUN apk add --no-cache ca-certificates
+
+# Make sure the binary has execute permission
+RUN chmod +x /app/main
 
 # Expose the API port
 EXPOSE 8010
 
-# Run the API server
+# Start the Go API server
 CMD ["/app/main"]
