@@ -12,11 +12,14 @@ RUN chmod +x /setup.sh && /setup.sh
 RUN apk update && apk add --no-cache go=1.24.0-r0
 
 # Copy Go module files and download dependencies
-COPY go.mod go.sum ./
+COPY go.mod go.sum ./ 
 RUN go mod download
 
 # Copy the entire app
 COPY . .
+
+# Ensure the public directory exists
+RUN mkdir -p /app/public
 
 # Build the Go application
 RUN go build -o main main.go  # Ensure main.go exists
@@ -29,7 +32,7 @@ WORKDIR /app
 
 # Copy the built binary and necessary files
 COPY --from=builder /app/main .
-COPY --from=builder /app/public ./public
+COPY --from=builder /app/public ./public || true
 
 # Ensure necessary runtime dependencies are installed
 RUN apk add --no-cache ca-certificates
