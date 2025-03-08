@@ -1,23 +1,17 @@
-# Use the specified base image
-FROM mcr.microsoft.com/devcontainers/base:alpine-3.20
+# Stage 1: Build
+FROM golang:1.20-alpine AS builder
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN go build -o main .
 
-# Set the working directory inside the container
-WORKDIR /workspaces/api
+# Stage 2: Run
+FROM alpine:latest
+WORKDIR /app
+COPY --from=builder /app/main .
+COPY --from=builder /app/public ./public
+RUN apk add --no-cache ca-certificates
 
-# Copy the setup script into the container
-COPY .devcontainer/setup.sh /workspaces/api/.devcontainer/setup.sh
-
-# Ensure the script has execution permissions
-RUN chmod +x /workspaces/api/.devcontainer/setup.sh
-
-# Execute the setup script
-RUN /bin/sh /workspaces/api/.devcontainer/setup.sh
-
-# Set the default user as root
-USER root
-
-# Expose any necessary ports (if applicable)
-EXPOSE 8010  
-
-# Define the default command (modify if needed)
-CMD ["sh"]
+EXPOSE 8010
+CMD ["./main"]
