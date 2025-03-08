@@ -24,13 +24,9 @@ jobs:
 
           script: |
             cd /home/cb/projects/youthcongress/api || exit 1
-            docker build -t youthcongressapi .            
+            docker build -t youthcongressnepal .            
             
             docker stop api.youthcongressnepal.org || true
             docker rm api.youthcongressnepal.org || true
            
-            docker run -d --restart always --name api.youthcongressnepal.org -p 8010:8010 youthcongressapi
-
-
-
-            
+            docker run -d --restart always --name api.youthcongressnepal.org -p 8010:8010 youthcongressnepal
