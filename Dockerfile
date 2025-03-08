@@ -16,7 +16,7 @@ RUN go mod download
 COPY . .
 
 # Build the Go application
-RUN go build -o main .
+RUN go build -o main main.go  # Ensure main.go exists
 
 # Stage 2: Run
 FROM mcr.microsoft.com/devcontainers/base:alpine-3.20
@@ -28,11 +28,11 @@ WORKDIR /app
 COPY --from=builder /app/main .
 COPY --from=builder /app/public ./public
 
-# Ensure required dependencies are installed
+# Ensure necessary runtime dependencies are installed
 RUN apk add --no-cache ca-certificates
 
 # Expose the API port
 EXPOSE 8010
 
-# Start the API server
-CMD ["./main"]
+# Run the API server
+CMD ["/app/main"]
