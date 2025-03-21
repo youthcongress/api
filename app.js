@@ -7,6 +7,9 @@ app.use('/static', express.static('static'));
 
 app.use('/', require('./routes/routes').app);
 
+const { connectStorage } = require('./connections/storage');
+    connectStorage();
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
     });

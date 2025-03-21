@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express.Router();
 
-app.use('/', require('./scripts/index.js'))
-app.use('/about', require('./scripts/about.js'))
-app.use('/contact', require('./scripts/contact.js'))
+app.use('/', require('../scripts/index.js').app);
+app.use('/about', require('../scripts/about.js').app);
+app.use('/contact', require('../scripts/contact.js').app);
+app.use('/login', require('../scripts/login.js').app);
+app.use('/register', require('../scripts/register.js').app);
 
 module.exports = { app };
